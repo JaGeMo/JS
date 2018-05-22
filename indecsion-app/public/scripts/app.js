@@ -42,7 +42,8 @@ var template = React.createElement(
 var user = {
   user_ID: '1',
   user_firstname: 'Horst',
-  user_surname: 'Templer',
+  user_surname: '',
+  user_age: '17',
   user_location: 'L.E.'
 };
 
@@ -72,10 +73,18 @@ var templateTwo = React.createElement(
   React.createElement(
     "h2",
     null,
-    'user_surname: ' + user.user_surname
+    user.user_surname ? user.user_surname : 'user_surname: Anonymous'
+  ),
+  user.user_age && user.user_age >= 18 && React.createElement(
+    "h2",
+    null,
+    'user_age: ' + user.user_age
   ),
   getLocation(user.user_location)
-);
+); // including function call
+
+// {(user.user_age && user_age >= 18) && <h2>{'user_age: ' + user.user_age}</h2>}
+
 var testRoot1 = document.getElementById('app1');
 var testRoot2 = document.getElementById('app2');
 

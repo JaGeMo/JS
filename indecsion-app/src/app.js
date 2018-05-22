@@ -18,7 +18,8 @@ let template = (
 let user = {
   user_ID: '1',
   user_firstname: 'Horst',
-  user_surname: 'Templer',
+  user_surname: '',
+  user_age: '17',
   user_location: 'L.E.'
 }
 
@@ -31,12 +32,16 @@ function getLocation (location) {
 
 let templateTwo = (
   <div>
-  <h2>{'user_id: ' + user.user_ID}</h2>
-  <h2>{'user_firstname: ' + user.user_firstname}</h2>
-  <h2>{'user_surname: ' + user.user_surname}</h2>
-  {getLocation(user.user_location)}
+    <h2>{'user_id: ' + user.user_ID}</h2>
+    <h2>{'user_firstname: ' + user.user_firstname}</h2>
+    <h2>{user.user_surname ? user.user_surname : 'user_surname: Anonymous'}</h2>
+    {(user.user_age && user.user_age >= 18) && <h2>{'user_age: ' + user.user_age}</h2>}
+    {getLocation(user.user_location)}
   </div>
-);
+); // including function call
+
+// {(user.user_age && user_age >= 18) && <h2>{'user_age: ' + user.user_age}</h2>}
+
 let testRoot1 = document.getElementById('app1');
 let testRoot2 = document.getElementById('app2');
 
