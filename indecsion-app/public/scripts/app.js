@@ -2,9 +2,19 @@
 
 console.log("checks .. ");
 
-var name = "Jan";
+// functions
+function getLocation(location) {
+  if (location) {
+    return React.createElement(
+      "h2",
+      null,
+      'user_location: ' + location
+    );
+  }
+}
 
 // JSX
+var name = "Jan";
 var template = React.createElement(
   "div",
   null,
@@ -39,6 +49,7 @@ var template = React.createElement(
   )
 );
 
+// objects
 var user = {
   user_ID: '1',
   user_firstname: 'Horst',
@@ -47,17 +58,13 @@ var user = {
   user_location: 'L.E.'
 };
 
-function getLocation(location) {
-  if (location) {
-    return React.createElement(
-      "h2",
-      null,
-      'user_location: ' + location
-    );
-  }
-}
+var app = {
+  title: 'title content',
+  subtitle: 'subtitle content',
+  options: ['one', 'two', 'three']
 
-var templateTwo = React.createElement(
+  // JSX
+};var templateTwo = React.createElement(
   "div",
   null,
   React.createElement(
@@ -83,10 +90,50 @@ var templateTwo = React.createElement(
   getLocation(user.user_location)
 ); // including function call
 
-// {(user.user_age && user_age >= 18) && <h2>{'user_age: ' + user.user_age}</h2>}
+var templateThree = React.createElement(
+  "div",
+  null,
+  app.subtitle && app.options.length > 0 ? React.createElement(
+    "h2",
+    null,
+    "your options are: "
+  ) : React.createElement(
+    "h2",
+    null,
+    "no options .. "
+  ),
+  React.createElement(
+    "h1",
+    null,
+    "subtitle: ",
+    app.subtitle
+  ),
+  React.createElement(
+    "ul",
+    null,
+    React.createElement(
+      "li",
+      null,
+      app.options[0]
+    ),
+    React.createElement(
+      "li",
+      null,
+      app.options[1]
+    ),
+    React.createElement(
+      "li",
+      null,
+      app.options[2]
+    )
+  )
+); // including function call
+
 
 var testRoot1 = document.getElementById('app1');
 var testRoot2 = document.getElementById('app2');
+var testRoot3 = document.getElementById('app3');
 
 ReactDOM.render(template, testRoot1);
 ReactDOM.render(templateTwo, testRoot2);
+ReactDOM.render(templateThree, testRoot3);
