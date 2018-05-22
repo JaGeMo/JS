@@ -15,17 +15,36 @@ name = "Steve";
 console.log(name);
 
 // const
-// const firstName; // not allowed
-const nameConst = "John";
+// const firstName; // not allowed because it need initialisation
+// const nameConst = "John";
 const person = {
     name:'John',
     age:30};
-
-person.name = "Sara";
+person.name = "SarahLuise";
 console.log(person);
+console.log(person.name.lastIndexOf('r')); // index of letter 'r' from the right
+console.log(person.name.charAt(person.name.length -1)); // last character
 
 const array = [1,2,3,4];
 console.log(array);
 array.push(3,5,8);
 console.log(array);
 console.log(typeof array);
+
+let val;
+val = Number("5");
+console.log(val);
+console.log(typeof val);
+console.log(val.toFixed());
+val = parseFloat(100.30);
+console.log(val);
+console.log(val.toFixed(2));
+console.log(parseInt(val));
+
+let mathObj
+mathObj = Math.random();
+console.log(mathObj); // always < 1
+console.log(mathObj * 20 + 1); // times 20 --> Numbers between 0 and 20 / for getting numbers larger than 1 always add 1 onto it
+console.log(Math.floor(mathObj * 20 + 1)); // for getting numbers larger than 1 add 1 onto it
+
+
