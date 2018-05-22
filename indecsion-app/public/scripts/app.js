@@ -1,139 +1,36 @@
-"use strict";
+'use strict';
 
-console.log("checks .. ");
-
-// functions
-function getLocation(location) {
-  if (location) {
-    return React.createElement(
-      "h2",
-      null,
-      'user_location: ' + location
-    );
-  }
+function square(x) {
+  return x *= x;
 }
 
-// JSX
-var name = "Jan";
-var template = React.createElement(
-  "div",
-  null,
-  React.createElement(
-    "h1",
-    null,
-    name
-  ),
-  React.createElement(
-    "p",
-    null,
-    "and this as well .."
-  ),
-  React.createElement(
-    "ul",
-    null,
-    React.createElement(
-      "li",
-      null,
-      "2"
-    ),
-    React.createElement(
-      "li",
-      null,
-      "3"
-    ),
-    React.createElement(
-      "li",
-      null,
-      "4 "
-    )
-  )
-);
+// calling a standard function
+var sqrValue = square(5);
+console.log('sqrValue', sqrValue);
 
-// objects
-var user = {
-  user_ID: '1',
-  user_firstname: 'Horst',
-  user_surname: '',
-  user_age: '17',
-  user_location: 'L.E.'
+// regular syntax
+var sqrValArrow = function sqrValArrow(x) {
+  return x *= x;
 };
 
-var app = {
-  title: 'title content',
-  subtitle: 'subtitle content',
-  options: ['one', 'two', 'three']
+// expression syntax
+var sqrValArrowTwo = function sqrValArrowTwo(x) {
+  return x *= x;
+};
 
-  // JSX
-};var templateTwo = React.createElement(
-  "div",
-  null,
-  React.createElement(
-    "h2",
-    null,
-    'user_id: ' + user.user_ID
-  ),
-  React.createElement(
-    "h2",
-    null,
-    'user_firstname: ' + user.user_firstname
-  ),
-  React.createElement(
-    "h2",
-    null,
-    user.user_surname ? user.user_surname : 'user_surname: Anonymous'
-  ),
-  user.user_age && user.user_age >= 18 && React.createElement(
-    "h2",
-    null,
-    'user_age: ' + user.user_age
-  ),
-  getLocation(user.user_location)
-); // including function call
+console.log('sqrValArrow', sqrValArrow(6));
+console.log('sqrValArrowTwo', sqrValArrowTwo(7));
 
-var templateThree = React.createElement(
-  "div",
-  null,
-  app.subtitle && app.options.length > 0 ? React.createElement(
-    "h2",
-    null,
-    "your options are: "
-  ) : React.createElement(
-    "h2",
-    null,
-    "no options .. "
-  ),
-  React.createElement(
-    "h1",
-    null,
-    "subtitle: ",
-    app.subtitle
-  ),
-  React.createElement(
-    "ul",
-    null,
-    React.createElement(
-      "li",
-      null,
-      app.options[0]
-    ),
-    React.createElement(
-      "li",
-      null,
-      app.options[1]
-    ),
-    React.createElement(
-      "li",
-      null,
-      app.options[2]
-    )
-  )
-); // including function call
+var fullName = 'Mike Smith';
 
+// regular syntax
+var regString = function regString(fullName) {
+  return fullName.split(' ')[0];
+};
 
-var testRoot1 = document.getElementById('app1');
-var testRoot2 = document.getElementById('app2');
-var testRoot3 = document.getElementById('app3');
+var regStringExpression = function regStringExpression(fullName) {
+  return fullName.split(' ')[0];
+};
 
-ReactDOM.render(template, testRoot1);
-ReactDOM.render(templateTwo, testRoot2);
-ReactDOM.render(templateThree, testRoot3);
+console.log('regString', regString(fullName));
+console.log('regStringExpression', regStringExpression(fullName));
