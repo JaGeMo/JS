@@ -1,36 +1,62 @@
 'use strict';
 
-function square(x) {
-  return x *= x;
-}
-
-// calling a standard function
-var sqrValue = square(5);
-console.log('sqrValue', sqrValue);
-
-// regular syntax
-var sqrValArrow = function sqrValArrow(x) {
-  return x *= x;
+var add = function add(a, b) {
+  return a + b;
 };
 
-// expression syntax
-var sqrValArrowTwo = function sqrValArrowTwo(x) {
-  return x *= x;
+console.log('regular anonymous function', add(4, 5));
+
+// standard syntax of method
+var user = {
+  name: 'Jan',
+  age: 30,
+  cities: ['Hier', 'Da', 'Nirgendwo'],
+  placesLived: function placesLived() {
+    this.cities.forEach(function (city) {
+      console.log(name + ' has lived in ' + city);
+    });
+  }
 };
+console.log('number one');
+user.placesLived();
 
-console.log('sqrValArrow', sqrValArrow(6));
-console.log('sqrValArrowTwo', sqrValArrowTwo(7));
-
-var fullName = 'Mike Smith';
-
-// regular syntax
-var regString = function regString(fullName) {
-  return fullName.split(' ')[0];
+// short syntax of method
+var userTwo = {
+  name: 'Jan',
+  age: 30,
+  cities: ['Hier', 'Da', 'Nirgendwo'],
+  placesLivedTwo: function placesLivedTwo() {
+    this.cities.forEach(function (city) {
+      console.log(name + ' has also lived in ' + city);
+    });
+  }
 };
+console.log('number two');
+userTwo.placesLivedTwo();
 
-var regStringExpression = function regStringExpression(fullName) {
-  return fullName.split(' ')[0];
+// short syntax of method but using map instead of foreach
+var userThree = {
+  name: 'Jan',
+  age: 30,
+  cities: ['Hier', 'Da', 'Nirgendwo'],
+  placesLivedThree: function placesLivedThree() {
+    var cityMessages = this.cities.map(function (city) {
+      console.log(name + ' has also lived in ' + city);
+    });
+    return cityMessages;
+  }
 };
+console.log('number three');
+userThree.placesLivedThree();
 
-console.log('regString', regString(fullName));
-console.log('regStringExpression', regStringExpression(fullName));
+var multiplyObj = {
+  numbers: [2, 3, 4, 6],
+  multipliedBy: 5,
+  multiply: function multiply() {
+    return this.numbers.map(function (number) {
+      return number * multipliedBy;
+    });
+  }
+};
+console.log('number four');
+console.log(multiplyObj.multiply());
