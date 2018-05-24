@@ -49,7 +49,7 @@ const multiplyObj = {
   numbers : [2,3,4,6],
   multipliedBy : 5,
   multiply() {
-    return this.numbers.map(number => number*multipliedBy);
+    return this.numbers.map(number => number*this.multipliedBy);
   }
 }
 console.log('number four');
