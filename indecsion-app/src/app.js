@@ -1,51 +1,10 @@
 console.log("checks .. ");
 
-// functions
-function getLocation (location) {
-  if (location) {
-    return <h2>{'user_location: ' + location}</h2>;
-  }
-}
-
-// JSX
-let name = "Jan";
-let template = (
-  <div>
-    <h1>{name}</h1>
-    <p>and this as well ..</p>
-    <ul>
-      <li>2</li>
-      <li>3</li>
-      <li>4 </li>
-    </ul>
-  </div>
-  );
-
-// objects
-let user = {
-  user_ID: '1',
-  user_firstname: 'Horst',
-  user_surname: '',
-  user_age: '17',
-  user_location: 'L.E.'
-}
-
 let app = {
   title : 'title content',
   subtitle : 'subtitle content',
   options : ['one', 'two', 'three']
 }
-
-// JSX
-let templateTwo = (
-  <div>
-    <h2>{'user_id: ' + user.user_ID}</h2>
-    <h2>{'user_firstname: ' + user.user_firstname}</h2>
-    <h2>{user.user_surname ? user.user_surname : 'user_surname: Anonymous'}</h2>
-    {(user.user_age && user.user_age >= 18) && <h2>{'user_age: ' + user.user_age}</h2>}
-    {getLocation(user.user_location)}
-  </div>
-); // including function call
 
 let templateThree = (
   <div>
@@ -59,55 +18,5 @@ let templateThree = (
     </div>
 );
 
-// let testRoot1 = document.getElementById('app1');
-// let testRoot2 = document.getElementById('app2');
-// let testRoot3 = document.getElementById('app3');
-
-
-// ReactDOM.render(template,testRoot1);
-// ReactDOM.render(templateTwo,testRoot2);
-// ReactDOM.render(templateThree,testRoot3);
-
-
-
-
-
-
-
-let count = 0;
-
-const addOne = () => {
-  count++;
-  renderCounterApp();
-  // console.log("addOne", count);
-}
-const minusOne = () => {
-  count--;
-  renderCounterApp();
-  // console.log("minusOne", count);
-}
-const reset = () => {
-  count = 0;
-  renderCounterApp();
-  // console.log("reset", count);
-}
-
-// comment
-const renderCounterApp = () => {
-  let templateFour = (
-    <div>
-      <h1>Count: {count}</h1>
-      <button onClick={addOne}>+1</button>
-      <br/><br/>
-      <button onClick={minusOne}>-1</button>
-      <br/><br/>
-      <button onClick={reset}>reset</button>
-    </div>
-  );
-
-  let testRoot4 = document.getElementById('app4');
-  ReactDOM.render(templateFour,testRoot4);
-};
-
-renderCounterApp();
-
+let testRoot3 = document.getElementById('app3');
+ReactDOM.render(templateThree,testRoot3);
