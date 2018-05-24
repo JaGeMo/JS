@@ -23,6 +23,13 @@ const removeOptionsButton = () => {
   renderFormApp();
 }
 
+
+const onMakeDecision = () => {
+  const randomMNumber = Math.floor((Math.random() * 100) + 1);
+  console.log(randomMNumber);
+}
+
+
 const renderFormApp = () => {
 
   let templateThree = (
@@ -32,6 +39,7 @@ const renderFormApp = () => {
 
       {(app.subtitle && app.options.length > 0) ? <h2>your options are: </h2> : <h2>no options .. </h2>}
 
+      <button disabled={app.options.length === 0} onClick={onMakeDecision}>decision</button><br/>
       <button onClick={removeOptionsButton}>test it</button>
 
       <p>{app.options.length}</p>

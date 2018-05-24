@@ -25,6 +25,11 @@ var removeOptionsButton = function removeOptionsButton() {
   renderFormApp();
 };
 
+var onMakeDecision = function onMakeDecision() {
+  var randomMNumber = Math.floor(Math.random() * 100 + 1);
+  console.log(randomMNumber);
+};
+
 var renderFormApp = function renderFormApp() {
 
   var templateThree = React.createElement(
@@ -51,6 +56,12 @@ var renderFormApp = function renderFormApp() {
       null,
       'no options .. '
     ),
+    React.createElement(
+      'button',
+      { disabled: app.options.length === 0, onClick: onMakeDecision },
+      'decision'
+    ),
+    React.createElement('br', null),
     React.createElement(
       'button',
       { onClick: removeOptionsButton },
