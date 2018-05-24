@@ -1,129 +1,67 @@
 'use strict';
 
-console.log("app.js is running .. ");
+var visibility = false;
 
-var app = {
-  title: 'title content',
-  subtitle: 'subtitle content',
-  options: []
+var textValue = {
+  string: ''
 };
+var buttonValue = {
+  string: 'Show details'
 
-var onFormSubmit = function onFormSubmit(e) {
-  e.preventDefault(); // syntetic event e must be called with an preventDefault
-
-  var option = e.target.elements.option.value;
-  if (option) {
-    app.options.push(option);
-    e.target.elements.option.value = '';
+  // first block solution
+  /*
+  const onShowOrHideText = () => {
+    (textValue.string == '') ? textValue.string = 'details shown' : textValue.string = '';
+    (buttonValue.string == 'Show details') ? buttonValue.string= 'Hide details' : buttonValue.string= 'Show details' ;
+    render();
   }
-  renderFormApp();
-  console.log(app.options);
+  
+  const render = () => {
+    let templateFour = (
+      <div>
+        <h1>Toggle Visibility</h1>
+        <button onClick={onShowOrHideText}>{buttonValue.string}</button>
+        <p>{textValue.string}</p>
+        </div>
+      );
+  
+    let testRoot4 = document.getElementById('app4');
+    ReactDOM.render(templateFour,testRoot4);
+  };
+  
+  render();
+  */
+
+  // second block solution
+};var onShowOrHideText = function onShowOrHideText() {
+  visibility ? textValue.string = '' : textValue.string = 'details shown';
+  visibility = !visibility;
+  render2();
 };
 
-var removeOptionsButton = function removeOptionsButton() {
-  app.options.length = [];
-  renderFormApp();
-};
-
-var onMakeDecision = function onMakeDecision() {
-  var randomMNumber = Math.floor(Math.random() * 100 + 1);
-  console.log(randomMNumber);
-};
-
-var renderFormApp = function renderFormApp() {
-
-  var templateThree = React.createElement(
+var render2 = function render2() {
+  var templateFour = React.createElement(
     'div',
     null,
     React.createElement(
       'h1',
       null,
-      'title: ',
-      app.title
-    ),
-    React.createElement(
-      'h2',
-      null,
-      'subtitle: ',
-      app.subtitle
-    ),
-    app.subtitle && app.options.length > 0 ? React.createElement(
-      'h2',
-      null,
-      'your options are: '
-    ) : React.createElement(
-      'h2',
-      null,
-      'no options .. '
+      'Toggle Visibility'
     ),
     React.createElement(
       'button',
-      { disabled: app.options.length === 0, onClick: onMakeDecision },
-      'decision'
-    ),
-    React.createElement('br', null),
-    React.createElement(
-      'button',
-      { onClick: removeOptionsButton },
-      'test it'
+      { onClick: onShowOrHideText },
+      visibility ? 'Hide details' : 'Show details'
     ),
     React.createElement(
       'p',
       null,
-      app.options.length
-    ),
-    React.createElement(
-      'form',
-      { onSubmit: onFormSubmit },
-      React.createElement('input', { type: 'text', name: 'option' }),
-      React.createElement(
-        'button',
-        null,
-        'add option'
-      )
+      textValue.string
     )
   );
 
-  var testRoot3 = document.getElementById('app3');
-  ReactDOM.render(templateThree, testRoot3);
+  var testRoot4 = document.getElementById('app4');
+  ReactDOM.render(templateFour, testRoot4);
 };
 
-// const Items = {
-//   showItems() {
-//     return app.options.map(option => <li>app.option.value</li>);
-//   }
-// }
-
-
-renderFormApp();
-
-/*
-class Toggle extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {isToggleOn: true};
-
-    // This binding is necessary to make `this` work in the callback
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick() {
-    this.setState(prevState => ({
-      isToggleOn: !prevState.isToggleOn
-    }));
-  }
-
-  render() {
-    return (
-      <button onClick={this.handleClick}>
-        {this.state.isToggleOn ? 'ON' : 'OFF'}
-      </button>
-    );
-  }
-}
-
-ReactDOM.render(
-  <Toggle />,
-  document.getElementById('app4')
-);
-*/
+render2();

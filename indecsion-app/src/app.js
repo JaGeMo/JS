@@ -29,7 +29,6 @@ const onMakeDecision = () => {
   console.log(randomMNumber);
 }
 
-
 const renderFormApp = () => {
 
   let templateThree = (
