@@ -35,6 +35,7 @@ var IndecisionApp = function (_React$Component) {
         React.createElement(Header, { title: title, subtitle: subtitle }),
         React.createElement(Action, null),
         React.createElement(Options, { options: options }),
+        React.createElement(Option, null),
         React.createElement(AddOption, null)
       );
     }
@@ -121,17 +122,26 @@ var Options = function (_React$Component4) {
         ),
         React.createElement("br", null),
         React.createElement(
-          "label",
+          "div",
           null,
-          counter
-        ),
-        React.createElement(Option, null)
+          React.createElement(
+            "p",
+            null,
+            counter
+          ),
+          this.props.options.map(function (option) {
+            return React.createElement(Option, { key: option, optionText: option });
+          })
+        )
       );
     }
   }]);
 
   return Options;
 }(React.Component);
+
+// <Option key={options} optionText={options} />
+// {this.props.options.map((option) => (<p>{option}</p>))}
 
 var Option = function (_React$Component5) {
   _inherits(Option, _React$Component5);
@@ -147,11 +157,11 @@ var Option = function (_React$Component5) {
     value: function render() {
       return React.createElement(
         "div",
-        null,
+        { id: this.props.optionText },
         React.createElement(
-          "label",
+          "p",
           null,
-          "single option here .. "
+          this.props.optionText
         )
       );
     }
