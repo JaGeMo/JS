@@ -1,3 +1,4 @@
+// comment
 class IndecisionApp extends React.Component {
 
   render() {
@@ -44,8 +45,12 @@ class Action extends React.Component {
 }
 
 class Options extends React.Component {
+  constructor (props) {
+    super(props);
+    this.removeAll = this.removeAll.bind(this); // binding it to the right context once ..
+  }
   removeAll () {
-    alert("test me ..")
+    console.log(this.props.options);
   }
   render() {
     const counter = this.props.options.length;
