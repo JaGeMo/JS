@@ -1,4 +1,3 @@
-// comment
 class IndecisionApp extends React.Component {
 
   render() {
@@ -45,12 +44,8 @@ class Action extends React.Component {
 }
 
 class Options extends React.Component {
-  constructor (props) {
-    super(props);
-    this.removeAll = this.removeAll.bind(this); // binding it to the right context once ..
-  }
   removeAll () {
-    console.log(this.props.options);
+    alert("test me ..")
   }
   render() {
     const counter = this.props.options.length;
@@ -81,7 +76,7 @@ class Option extends React.Component {
 class AddOption extends React.Component {
   handleAddOption (event) {
     event.preventDefault(); // prevents a form submission and a full page refresh
-    const tmpVar = event.target.elements.option.value;
+    const tmpVar = event.target.elements.option.value.trim();
     if(tmpVar) (alert(tmpVar));
 
   }

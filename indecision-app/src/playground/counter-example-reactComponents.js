@@ -26,7 +26,11 @@ class Counter extends React.Component {
     }
 
     handleReset () {
-        alert("reset");
+        this.setState(() => { // prevState needs to be input of the anonymous function
+            return {
+                count: 0
+            };
+        });
     }
 
     render () {
