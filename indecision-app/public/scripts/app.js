@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -16,52 +16,73 @@ var Counter = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (Counter.__proto__ || Object.getPrototypeOf(Counter)).call(this, props));
 
-        var count = 0;
-        _this.count = count;
+        _this.state = { count: 0 };
         _this.handlePlusOne = _this.handlePlusOne.bind(_this);
         _this.handleMinusOne = _this.handleMinusOne.bind(_this);
+        _this.handleReset = _this.handleReset.bind(_this);
         return _this;
     }
 
     _createClass(Counter, [{
-        key: 'handlePlusOne',
+        key: "handlePlusOne",
         value: function handlePlusOne() {
-            this.count++;
-            console.log(this.count);
-            this.render();
+            // setState is a standard function
+            this.setState(function (prevState) {
+                // prevState needs to be input of the anonymous function
+                return {
+                    count: prevState.count + 1 // only use the props you would like to modify
+                };
+            });
+            console.log(this.count++);
         }
     }, {
-        key: 'handleMinusOne',
+        key: "handleMinusOne",
         value: function handleMinusOne() {
-            this.count--;
-            console.log(this.count);
-            this.render();
+            this.setState(function (prevState) {
+                // prevState needs to be input of the anonymous function
+                return {
+                    count: prevState.count - 1
+                };
+            });
         }
     }, {
-        key: 'render',
+        key: "handleReset",
+        value: function handleReset() {
+            alert("reset");
+        }
+    }, {
+        key: "render",
         value: function render() {
             return React.createElement(
-                'div',
+                "div",
                 null,
                 React.createElement(
-                    'p',
+                    "h1",
                     null,
-                    this.count
+                    "Count: ",
+                    this.state.count
                 ),
                 React.createElement(
-                    'button',
+                    "button",
                     { onClick: this.handlePlusOne },
-                    '+1'
+                    "+1"
                 ),
-                React.createElement('br', null),
-                React.createElement('br', null),
+                React.createElement("br", null),
+                React.createElement("br", null),
                 React.createElement(
-                    'button',
+                    "button",
                     { onClick: this.handleMinusOne },
-                    '-1'
+                    "-1"
                 ),
-                React.createElement('br', null),
-                React.createElement('br', null)
+                React.createElement("br", null),
+                React.createElement("br", null),
+                React.createElement(
+                    "button",
+                    { onClick: this.handleReset },
+                    "reset"
+                ),
+                React.createElement("br", null),
+                React.createElement("br", null)
             );
         }
     }]);
@@ -70,3 +91,37 @@ var Counter = function (_React$Component) {
 }(React.Component);
 
 ReactDOM.render(React.createElement(Counter, null), document.getElementById('app'));
+
+// class Counter extends React.Component {
+//     constructor (props) {
+//         super(props);
+//         let count = 0;
+//         this.count = count;
+//         this.handlePlusOne = this.handlePlusOne.bind(this);
+//         this.handleMinusOne = this.handleMinusOne.bind(this);
+//     }
+
+//     handlePlusOne () {
+//         this.count++;
+//         console.log(this.count);
+//         this.render();
+//     }
+
+//     handleMinusOne () {
+//         this.count--;
+//         console.log(this.count);
+//         this.render();
+//     }
+
+//     render () {
+//     return (
+//         <div>
+//             <p>{this.count}</p>
+//             <button onClick={this.handlePlusOne}>+1</button><br/><br/>
+//             <button onClick={this.handleMinusOne}>-1</button><br/><br/>
+//         </div>
+//     )
+//     };
+// }
+
+// ReactDOM.render(<Counter />,document.getElementById('app'));
