@@ -1,4 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { BrowserRouter as Router } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 
 class Landing extends Component {
   render() {
@@ -11,8 +14,8 @@ class Landing extends Component {
                 <h1 className="display-3 mb-4">MeldeCenter AIM / LicenseManagement</h1>
                 <p className="lead">LicenseManagement</p>
                 <hr />
-                <a href="register.html" className="btn btn-lg btn-info mr-2">Sign Up</a>
-                <a href="login.html" className="btn btn-lg btn-light">Login</a>
+                <Link className="btn btn-lg btn-info mr-2" to="/register">Register</Link>
+                <Link className="btn btn-lg btn-light" to="/login">Login</Link>
               </div>
             </div>
           </div>
