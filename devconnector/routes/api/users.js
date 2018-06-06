@@ -4,13 +4,25 @@ const gravatar = require("gravatar");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys.js");
+const passport = require('passport');
 
 const User = require("../../models/User");
+let testSalt = '';
 
 // @route GET api/users/test
 // @desc  tests users routes
 // access public
 router.get("/test", (req, res) => res.json({ msg: "users works" }));
+
+// @route GET api/users/current
+// @desc
+// access private
+router.get("/current",
+  passport.authenticate('jwt', {session: false}),
+  (req, res) => {
+    res.json({msg: 'success'})
+  }
+);
 
 // @route POST api/users/register
 // @desc  registers users
@@ -23,7 +35,7 @@ router.post("/register", (req, res) => {
       const avatar = gravatar.url(req.body.email, {
         s: "200", // size
         r: "pg", // rating
-        d: "mm" // defaultS
+        d: "mm" // defaultS<
       });
       const newUser = new User({
         name: req.body.name,
@@ -31,6 +43,8 @@ router.post("/register", (req, res) => {
         avatar,
         password: req.body.password
       });
+
+      bcrypt.genSalt(10, (err, salt) => {testSalt = salt});
 
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(newUser.password, salt, (err, hash) => {
@@ -81,5 +95,6 @@ router.post("/login", (req, res) => {
     });
   });
 });
+;
 
 module.exports = router;
