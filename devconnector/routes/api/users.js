@@ -15,12 +15,15 @@ let testSalt = '';
 router.get("/test", (req, res) => res.json({ msg: "users works" }));
 
 // @route GET api/users/current
-// @desc
+// @desc test authentication
 // access private
 router.get("/current",
   passport.authenticate('jwt', {session: false}),
   (req, res) => {
-    res.json({msg: 'success'})
+    res.json({
+      id: req.user.id,
+      name: req.user.name
+    });
   }
 );
 
