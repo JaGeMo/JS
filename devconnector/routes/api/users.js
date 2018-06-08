@@ -6,6 +6,10 @@ const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys.js");
 const passport = require('passport');
 
+// login validation
+const validateRegisterInput = require('../../validation/register');
+const validateLoginInput = require('../../validation/login');
+
 const User = require("../../models/User");
 let testSalt = '';
 
@@ -31,9 +35,16 @@ router.get("/current",
 // @desc  registers users
 // access public
 router.post("/register", (req, res) => {
+  // input validation
+  const { errors, isValid } = validateRegisterInput(req.body);
+  if(!isValid){
+    return res.status(400).json(errors);
+  }
+
   User.findOne({ email: req.body.email }).then(user => {
     if (user) {
-      return res.status(400).json({ email: "email already exists" });
+      errors.email = "email already exists";
+      return res.status(400).json({ errors });
     } else {
       const avatar = gravatar.url(req.body.email, {
         s: "200", // size
@@ -67,6 +78,12 @@ router.post("/register", (req, res) => {
 // @desc  login with username or email and password
 // access public
 router.post("/login", (req, res) => {
+
+  const { errors, isValid } = validateLoginInput(req.body);
+  if(!isValid){
+    return res.status(400).json(errors);
+  }
+
   const email = req.body.email;
   const password = req.body.password;
   User.findOne({ email }).then(user => {
