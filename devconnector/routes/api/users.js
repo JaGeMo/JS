@@ -35,7 +35,8 @@ router.get("/current",
 // @desc  registers users
 // access public
 router.post("/register", (req, res) => {
-  // input validation
+
+  // input validation - before applying anything
   const { errors, isValid } = validateRegisterInput(req.body);
   if(!isValid){
     return res.status(400).json(errors);
