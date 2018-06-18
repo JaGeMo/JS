@@ -15,7 +15,6 @@ class Register extends Component {
       password: '',
       password2: '',
       errors: {},
-      isExpanded: true
     }
 
     this.onChange = this.onChange.bind(this);
@@ -54,6 +53,7 @@ class Register extends Component {
 
     return (
       <div className="register">
+        {errors.email ? errors.email : null}
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
