@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import jwt_decode from 'jwt-decode';
 import { Provider } from 'react-redux';
+import { setCurrentUser } from './actions/authActions';
 import store from './store';
 
 
@@ -11,6 +13,18 @@ import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 
 import './App.css';
+import setAuthToken from './utils/setAuthToken';
+
+// maintain login data when refreshing page for authz header and current user
+if(localStorage.jwtToken) {
+  // set auth header variables
+  setAuthToken(localStorage.jwtToken);
+  // retreive user
+  const decoded = jwt_decode(localStorage.jwtToken);
+  // set current user
+  store.dispatch(setCurrentUser(decoded));
+}
+
 
 class App extends Component {
   render() {

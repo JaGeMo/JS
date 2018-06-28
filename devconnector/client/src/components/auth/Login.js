@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
-import axios from 'axios';
 import classnames from 'classnames';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { loginUser } from '../../actions/authActions';
 
 class Login extends Component {
   constructor () {
@@ -15,6 +17,17 @@ class Login extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  // growth cycle
+  componentWillReceiveProps(nextProps){
+    if(nextProps.auth.isAuthenticated) {
+      this.props.history.push('/dashboard'); // converts new props into state items after they have been received via mapStateToProps
+    }
+
+    if(nextProps.errors) {
+      this.setState({errors: nextProps.errors}); // converts new props into state items after they have been received via mapStateToProps
+    }
+  }
+
   onChange(e){
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -27,16 +40,14 @@ class Login extends Component {
       password: this.state.password
     }
 
-    axios.post('/api/users/login', user)
-    .then(res => console.log(res.data))
-    .catch(err => this.setState({ errors: err.response.data }))
+    this.props.loginUser(user);
 
     console.log({user});
   }
 
   render() {
 
-    const { errors } = this.state;
+    const { errors } = this.state; // map the via reducer received props back to the component state
 
     return (
     <div className="login">
@@ -82,9 +93,21 @@ class Login extends Component {
         </div>
       </div>
     </div>
-
     )
   }
 }
 
-export default Login;
+// definining properties to which the state will be mapped via mapStateToProps() function
+Login.PropTypes = {
+  loginUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+}
+
+// connect state from the redux store to corresponding props
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  errors: state.errors
+});
+
+export default connect(mapStateToProps, {loginUser})(Login);

@@ -49,7 +49,7 @@ class Register extends Component {
   render() {
 
     // see componentWillReceiveProps method - since the method maps props into state items, the errors still come from the state
-    const errors  = this.state.errors;
+    const errors  = this.state.errors; // map the via reducer received props back to the component state
 
     return (
       <div className="register">
@@ -137,9 +137,10 @@ Register.PropTypes = {
   errors: PropTypes.object.isRequired
 }
 
+// connect state from the redux store to corresponding props
 const mapStateToProps = (state) => ({
   auth: state.auth,
   errors: state.errors
 });
 
-export default connect (mapStateToProps, { registerUser})(Register);
+export default connect (mapStateToProps, { registerUser })(Register);
