@@ -13,7 +13,7 @@ let name = 'John Doe';
 console.log(name);
 name = "Steve";
 console.log(name);
-
+/*
 // const
 // const firstName; // not allowed because it need initialisation
 // const nameConst = "John";
@@ -46,5 +46,23 @@ mathObj = Math.random();
 console.log(mathObj); // always < 1
 console.log(mathObj * 20 + 1); // times 20 --> Numbers between 0 and 20 / for getting numbers larger than 1 always add 1 onto it
 console.log(Math.floor(mathObj * 20 + 1)); // for getting numbers larger than 1 add 1 onto it
+*/
 
+// Person constructor
+function Person(name, dob){
+  this.name = name;
+  this.birthday = new Date(dob);
+  console.log(this);
+
+  this.calculatedAge = function(){
+    const ageDiff = Date.now() - this.birthday.getTime();
+    const age = new Date(ageDiff);
+    return Math.abs(age.getUTCFullYear() - 1970);
+  }
+
+  const age = this.calculatedAge();
+  console.log(age);
+}
+
+const testObj = new Person("Jan", "1918-07-04");
 
