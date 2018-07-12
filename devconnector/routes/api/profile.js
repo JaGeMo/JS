@@ -10,10 +10,48 @@ const Profile = require("../../models/Profile");
 const validateProfileInput = require('../../validation/profile');
 
 
+
+
 // @route GET api/profile/test
 // @desc  tests profile routes
 // access public
 router.get('/test', (req, res) => res.json({msg: "profile works"}));
+
+// @route GET api/profile/handle/:handle
+// @desc  get profile by handle
+// access public
+router.post('/handle/:handle', (req, res) => { //:handle (placeholder)
+  const errors = {};
+  Profile.findOne({handle: req.params.handle})
+  .populate( 'user', [ 'name', 'avatar'] ) // adds additional info from other collection (temp.)
+  .then(profile => {
+    if(!profile){
+      errors.noprofile = "There is no profile for this user .. ";
+      res.status(404).json(errors);
+    }
+    res.json(profile);
+  })
+  .catch(err => res.status(404).json(err));
+});
+
+// @route GET api/profile/user/:user_id
+// @desc  get profile by user id
+// access public
+router.post('/user/:user_id', (req, res) => { //:handle (placeholder)
+  const errors = {};
+  Profile.findOne({user: req.params.user_id})
+  .populate( 'user', [ 'name', 'avatar'] ) // adds additional info from other collection (temp.)
+  .then(profile => {
+    if(!profile){
+      errors.noprofile = "There is no profile for this user .. ";
+      res.status(404).json(errors);
+    }
+    res.json(profile);
+  })
+  .catch(err => res.status(404).json(err));
+});
+
+
 
 // @route GET api/profile/test
 // @desc  get current users profile
