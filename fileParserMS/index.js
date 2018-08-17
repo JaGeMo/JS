@@ -7,12 +7,12 @@ var threshold = null;
 
 program
   .arguments('<fileName>')
-  .option('-t, --threshold <threshold>', 'threshold')
-  . action(function(fileName) {
+  .action(function(fileName) {
     co(function *() {
     threshold = yield prompt('threshold: ');
     fileHandler.handleFile(fileName, threshold);
     })
   })
-.parse(process.argv)
-.action(() => {process.exit()})
+  .parse(process.argv)
+
+  program.action(() => {console.log("Test");})

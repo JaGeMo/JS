@@ -1,7 +1,7 @@
 {
-  "name": "fileparser",
-  "version": "0.0.1",
-  "description": "parsing csv files",
+  "name": "hereford.fileparser.mgschneider",
+  "version": "0.0.3",
+  "description": "Parsing csv files for MS",
   "main": "index.js",
   "scripts": {
     "start": "node index"

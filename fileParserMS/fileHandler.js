@@ -25,12 +25,13 @@ exports.handleFile = function (fileName, threshold) {
     });
   }
 
-  fs.appendFile('./output.csv', 'adresseNr;vorname;name;email;gruppen;count;exceedThreshold' + '\n', function (err) {
-    if (err) throw err;
-    console.log('header appended');
-  });
+  const code = 0;
 
-  fs.createReadStream(fileName)
+  fs.appendFile('./output.csv', 'adresseNr;vorname;name;email;gruppen;count;exceedThreshold' + '\n', function (code,err) {
+
+    if (err) throw err;
+
+    fs.createReadStream(fileName)
     .pipe(csv({
       raw: true,     // do not decode to utf-8 strings
       separator: ';', // specify optional cell separator
@@ -47,5 +48,9 @@ exports.handleFile = function (fileName, threshold) {
         if (err) throw err;
       });
       console.log(tmpStr);
+
     })
+
+
+  })
 }
