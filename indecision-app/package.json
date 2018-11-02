@@ -9,6 +9,7 @@
     "build-babel": "babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch"
   },
   "dependencies": {
+    "jshint": "^2.9.6",
     "live-server": "^1.2.0",
     "webpack": "^4.16.5"
   },
